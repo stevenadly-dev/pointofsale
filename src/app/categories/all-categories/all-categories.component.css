@@ -1,0 +1,13 @@
+.section {
+  padding: 200px 0;
+}
+
+.w-full {
+  width: auto;
+  margin: auto;
+  max-width: 60%;
+}
+
+.w-60 {
+  width: 60px;
+}

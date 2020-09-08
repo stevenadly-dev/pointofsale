@@ -1,0 +1,16 @@
+<div class="row finalResult" *ngIf="cart&&cart?.total !==0">
+  <ul>
+    <li>
+      <h3> TOTAL : {{cart.total}}</h3>
+    </li>
+    <li>
+      <h3> taxes (5%): {{cart.taxes}}</h3>
+    </li>
+    <li>
+      <h3> delivery : {{cart.delivery}}</h3>
+    </li>
+    <li>
+      <h3> final total :{{cart.totalCart}} </h3>
+    </li>
+  </ul>
+</div>

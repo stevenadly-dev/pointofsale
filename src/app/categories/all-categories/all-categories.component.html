@@ -1,0 +1,34 @@
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">category name</th>
+              <th scope="col">category image</th>
+              <th>edit - delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of categories;let i = index;">
+              <th scope="row">{{i+1}}</th>
+              <td>{{category.categoryName}}</td>
+              <td><img [src]="category.imageUrl" class="w-60" alt=""></td>
+              <td><a href="#" class="btn btn-info m-btn m-btn--icon m-btn--icon-only m-btn--pill">
+                  <i class="la la-map-marker"></i>
+                </a>
+                <button class="btn btn-info m-btn m-btn--icon m-btn--icon-only m-btn--pill" (click)="delete(category)">
+                  delete
+                </button></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</section>

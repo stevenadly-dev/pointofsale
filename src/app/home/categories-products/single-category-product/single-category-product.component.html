@@ -1,0 +1,36 @@
+ <!--begin::Item-->
+ <div class="m-accordion__item cateogry">
+   <div class="m-accordion__item-head collapsed " role="tab" id="m_accordion_8_item_1_head" data-toggle="collapse"
+     href="#m_accordion_8_item_1_body" aria-expanded="    false">
+     <span class="m-accordion__item-icon">
+       <i class="fa flaticon-user-ok"></i>
+     </span>
+     <span class="m-accordion__item-title" [id]="category.id">
+       {{category.name}}
+     </span>
+     <span class="m-accordion__item-mode"></span>
+   </div>
+   <div class="m-accordion__item-body  myCollapse" id="m_accordion_8_item_1_body" role="tabpanel"
+     aria-labelledby="m_accordion_8_item_1_head" data-parent="#m_accordion_8">
+     <div class="m-accordion__item-content">
+
+
+
+       <!-- <div class="row productRow"></div> -->
+       <!-- <div class="row productRow"></div> -->
+
+       <div class="row">
+
+         <div class=" col-lg-2 col-md-4 col-6  padding-20 product-parent"
+           *ngFor="let product of products |searchProducts : inputSearch" (click)="MainHomeService.addToCart(product)">
+           <app-single-product-card [product]="product"></app-single-product-card>
+         </div>
+
+       </div>
+
+
+
+     </div>
+   </div>
+ </div>
+ <!--end::Item-->

@@ -1,0 +1,24 @@
+<!-- <div class="pos-search-f-r" >
+  <div class="m-input-icon m-input-icon--left">
+    <input type="text" class="form-control m-input m-input--solid" placeholder="Search..." #search>
+    <span class="m-input-icon__icon m-input-icon__icon--left">
+      <span>
+        <i class="la la-search"></i>
+      </span>
+    </span>
+  </div>
+</div>
+ -->
+
+<div class="pos-search-f-r">
+  <div class="m-input-icon m-input-icon--left">
+    <input type="text" class="form-control m-input m-input--solid" placeholder="Search..."
+      (keyup)="findSearchEl(search.value);" #search>
+    <span class="m-input-icon__icon m-input-icon__icon--left">
+      <span>
+        <i class="la la-search"></i>
+      </span>
+    </span>
+  </div>
+</div>
+<!-- <button (click)="findSearchEl('ss')">say hi</button> -->

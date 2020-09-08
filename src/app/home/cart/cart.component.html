@@ -1,0 +1,84 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">
+          Cart
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            Product
+          </th>
+          <th>
+            Price
+          </th>
+          <th>
+            Quantity
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="Cart">
+
+
+        <tr *ngFor="let cartItem of cart?.items ;let i = index;">
+          <th scope="row">{{cartItem.id}}</th>
+          <td>{{cartItem.productName}}</td>
+          <td> {{cartItem.totalForItem}}</td>
+          <td class="quantity-td">
+
+
+            <button type="button" class="btn m-btn m-btn--gradient-from-success m-btn--gradient-to-accent"
+              (click)="decreaseValue(cartItem)">
+              -
+            </button>
+
+
+
+            <input id="m_touchspin_3" type="number" class="form-control changeValue" [value]="cartItem.productQty"
+              min="1" max="15" name="demo1" placeholder="Select time" inputid="c4" disabled>
+
+
+            <button type="button" class="btn m-btn m-btn--gradient-from-success m-btn--gradient-to-accent"
+              (click)="increaseValue(cartItem)">
+              +
+            </button>
+          </td>
+          <td><button type="button" class="btn btn-danger deleteClass" btnid="c4"
+              (click)="deleteItemFromCart(i)">Delete</button></td>
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+
+    <app-total-result></app-total-result>
+
+  </div>
+  <div class="m-portlet__foot">
+    <div class="row align-items-center">
+      <div class="m--align-right">
+        <button type="submit" class="btn btn-brand">
+          Submit
+        </button>
+        <span class="m--margin-left-10">
+          or
+          <a href="#" id="cancelBtn" class="m-link m--font-bold">
+            Cancel
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

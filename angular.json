@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "pointofsale": {
@@ -24,18 +24,21 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/vendors/base/vendors.bundle.css",
+              "src/assets/demo/default/base/style.bundle.css",
+              "src/assets/pos.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -44,8 +47,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
-                {
+              "budgets": [{
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
@@ -119,6 +121,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pointofsale"
+    }
+  },
+  "defaultProject": "pointofsale",
+  "cli": {
+    "analytics": "dd0d76fa-c6ba-4d24-9a61-ff357a58f2db"
+  }
 }

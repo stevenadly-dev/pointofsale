@@ -1,0 +1,59 @@
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="m-portlet m-portlet--tab">
+
+          <div class="loading" *ngIf="isSubmitted"></div>
+
+          <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="addCategoryForm"
+            (ngSubmit)="onSubmit(addCategoryForm.value)">
+            <div class=" m-portlet__body">
+
+              <div class="form-group m-form__group">
+                <label for="exampleInputEmail1">
+                  category name
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" id="categoryName"
+                  placeholder="category name" formControlName="categoryName">
+
+                <span class="error"
+                  *ngIf="addCategoryForm.controls.categoryName.touched && addCategoryForm.controls.categoryName.invalid">this
+                  field is required</span>
+              </div>
+
+              <div class="text-center">
+                <img [src]="placeholder" class="w-full" alt="" (click)="categoryImg.click()">
+
+              </div>
+              <div class="form-group m-form__group">
+                <label for="exampleInputPassword1">
+                  category Image
+                </label>
+                <input type="file" class="form-control m-input m-input--solid" id="categoryImage" placeholder="image"
+                  formControlName="imageUrl" (change)="preview($event)" #categoryImg
+                  accept="image/gif, image/jpeg, image/png">
+                <span class="error"
+                  *ngIf="addCategoryForm.controls.categoryName.touched && addCategoryForm.controls.imageUrl.invalid">this
+                  field is required</span>
+              </div>
+
+
+            </div>
+            <div class="m-portlet__foot m-portlet__foot--fit">
+              <div class="m-form__actions">
+                <button type="submit" class="btn btn-success" [disabled]='addCategoryForm.invalid'>
+                  Submit
+                </button>
+
+              </div>
+            </div>
+
+            <!-- <code> {{addCategoryForm.value |json}}</code> -->
+          </form>
+          <!--end::Form-->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

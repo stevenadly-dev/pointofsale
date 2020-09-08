@@ -1,0 +1,13 @@
+.padding-20{padding:20px;}
+.border-rad-3{border-radius:3px;}
+.product{ width:100%;  border: 1px solid #e2e2e2; border-bottom-width: 3px;border-radius:3px; overflow: hidden;  font-size: 11px}
+.product-img-price{width:100%;position:relative;}
+.product-img{width:100%; height:100px;}
+.product-price{position: absolute; top:5px; left:5px; padding:2px 5px; border-radius:2px;  background-color:#7f82ac; color:#ffffff}
+.product-code{position: absolute; bottom:5px; right:5px; padding:2px 5px;; border-radius:2px; background-color:#7f82ac; color:#ffffff}
+.product-name{width:100%;background-color: rgb(255, 255, 255);padding:0px 0 0px 5px; }
+.pos-search{ margin-top:20px;}
+.pos-search-f-r{float:right; margin-top:20px;}
+.padd-top-30{padding:30px 0 0 21px }
+.W100{width:100%!important}
+.padding-t-d{padding:25px 0}
