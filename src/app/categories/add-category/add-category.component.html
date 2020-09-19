@@ -31,8 +31,7 @@
                   category Image
                 </label>
                 <input type="file" class="form-control m-input m-input--solid" id="categoryImage" placeholder="image"
-                  formControlName="imageUrl" (change)="preview($event)" #categoryImg
-                  accept="image/gif, image/jpeg, image/png">
+                  formControlName="imageUrl" (change)="preview($event)" accept="image/gif, image/jpeg, image/png">
                 <span class="error"
                   *ngIf="addCategoryForm.controls.categoryName.touched && addCategoryForm.controls.imageUrl.invalid">this
                   field is required</span>

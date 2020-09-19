@@ -1,7 +1,7 @@
 <section class="section">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <div class="col-md-10 offset-md-1">
 
         <table class="table table-dark">
           <thead>
@@ -13,15 +13,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let category of categories;let i = index;">
+            <tr *ngFor="let category of categories; let i = index;">
               <th scope="row">{{i+1}}</th>
               <td>{{category.categoryName}}</td>
               <td><img [src]="category.imageUrl" class="w-60" alt=""></td>
-              <td><a href="#" class="btn btn-info m-btn m-btn--icon m-btn--icon-only m-btn--pill">
-                  <i class="la la-map-marker"></i>
+              <td><a [routerLink]="['edit-category',category.key]"
+                  class="btn btn-info m-btn m-btn--icon m-btn--icon-only m-btn--pill">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
                 <button class="btn btn-info m-btn m-btn--icon m-btn--icon-only m-btn--pill" (click)="delete(category)">
-                  delete
+                  <i class="fa fa-trash" aria-hidden="true"></i>
                 </button></td>
             </tr>
 

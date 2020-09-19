@@ -21,12 +21,18 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CategoriesModule } from "./categories/categories.module";
+import { SidebarComponent } from "./shared/components/sidebar/sidebar.component";
 // import { CategoriesModule } from "./categories/categories.module";
 
 //   StorageBucket
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+  ],
   imports: [
     // AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),

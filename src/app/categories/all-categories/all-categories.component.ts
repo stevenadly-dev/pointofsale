@@ -11,15 +11,18 @@ export class AllCategoriesComponent implements OnInit {
   constructor(private CategoriesService: CategoriesService) {}
 
   ngOnInit(): void {
-    this.CategoriesService.getAllCategories()
-      .valueChanges()
-      .subscribe((res) => {
-        this.categories = res;
-        console.log(this.categories);
-      });
+    this.CategoriesService.getAllCategories().subscribe((res) => {
+      this.categories = res;
+      // console.log(this.categories);
+      debugger;
+    });
   }
 
   delete(el) {
     this.CategoriesService.deleteCategory(el);
   }
+
+  // /-MHGbHGKEvtjrRAOWonH
+
+  getCategoriesByName(Cname) {}
 }
