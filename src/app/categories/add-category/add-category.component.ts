@@ -1,3 +1,4 @@
+import { category } from "src/app/shared/models/category.model";
 import { CategoriesService } from "./../categories.service";
 import { finalize } from "rxjs/operators";
 
@@ -5,6 +6,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AngularFireStorage } from "@angular/fire/storage";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+
 @Component({
   selector: "app-add-category",
   templateUrl: "./add-category.component.html",
@@ -19,6 +21,9 @@ export class AddCategoryComponent implements OnInit, AfterViewInit {
 
   currrentCategoryId: string = "";
   @ViewChild("categoryImg") categoryImg;
+  formType = "add";
+  currentCategoryToEdit;
+
   // fileNgModel = "";
   // categoryImg
 
@@ -29,9 +34,7 @@ export class AddCategoryComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  onSubmit(myForm) {
-    this.isSubmitted = true;
-
+  uploadForm(myForm) {
     if (this.addCategoryForm.valid) {
       let imageName = `${new Date().getTime()}_${this.selectedImg.name}`;
       let filePath = `categories/${new Date().getTime()}_${
@@ -49,7 +52,15 @@ export class AddCategoryComponent implements OnInit, AfterViewInit {
               debugger;
               //
               console.log("imageName", imageName);
-              this.CategoriesService.insertCategory(myForm);
+
+              if (this.formType == "add") {
+                this.CategoriesService.insertCategory(myForm);
+              } else if (this.formType == "edit") {
+                this.CategoriesService.updateCategory(
+                  this.currrentCategoryId,
+                  this.addCategoryForm.value
+                );
+              }
 
               this.resetForm();
             });
@@ -58,7 +69,43 @@ export class AddCategoryComponent implements OnInit, AfterViewInit {
         .subscribe();
     }
   }
+  // submit function (add or edit)
+  onSubmit(myForm) {
+    this.isSubmitted = true;
+    // add form
+    if (this.formType == "add") {
+      debugger;
+      this.uploadForm(myForm);
+    }
 
+    // edit form
+    else if (this.formType == "edit") {
+      debugger;
+      if (this.addCategoryForm.controls["imageUrl"].value == "") {
+        let imageUrl = this.currentCategoryToEdit.imageUrl;
+        // this.addCategoryForm.controls["imageUrl"].value(
+        //   this.currentCategoryToEdit.imageUrl
+        // );
+
+        debugger;
+        this.CategoriesService.updateCategory(this.currrentCategoryId, {
+          categoryName: this.addCategoryForm.controls["categoryName"].value,
+          imageUrl: imageUrl,
+        });
+      } else {
+        this.uploadForm(myForm);
+      }
+      // myForm["imageUrl"] = url;
+      // this.CategoriesService.updateCategory(
+      //   this.currrentCategoryId,
+      //   this.addCategoryForm
+      // );
+      // console.log("-----------------------edit");
+      this.isSubmitted = false;
+    }
+  }
+
+  // preview image on chang file input
   preview(event) {
     console.log("event", event);
     if (event.target.files && event.target.files[0]) {
@@ -71,6 +118,7 @@ export class AddCategoryComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // reset form after submit
   resetForm() {
     this.addCategoryForm.controls["categoryName"].reset();
     this.addCategoryForm.reset;
@@ -91,14 +139,22 @@ export class AddCategoryComponent implements OnInit, AfterViewInit {
     this.selectedImg = null;
   }
 
+  // detect router paramter if found detect edit and change formtype
   getCategoryToEdit() {
     this.currrentCategoryId = this.activatedRoute.snapshot.params["id"];
     // this.changeCategoryFormDataById();
+    if (this.currrentCategoryId) {
+      this.formType = "edit";
+      this.addCategoryForm.controls["imageUrl"].clearValidators();
+      this.addCategoryForm.controls["imageUrl"].setErrors(null);
+      this.addCategoryForm.controls["imageUrl"].setValidators([]);
+    }
 
     this.activatedRoute.params.subscribe((params: Params) => {
       this.currrentCategoryId = params["id"];
       if (this.currrentCategoryId) {
         this.changeCategoryFormDataById();
+        this.formType = "edit";
       }
     });
 
@@ -110,11 +166,14 @@ export class AddCategoryComponent implements OnInit, AfterViewInit {
       .valueChanges()
       .subscribe((res) => {
         console.log("res====", res);
+        this.currentCategoryToEdit = res;
+        debugger;
 
         this.placeholder = res["imageUrl"];
         this.addCategoryForm.controls.categoryName.setValue(
           res["categoryName"]
         );
+
         // this.fileNgModel = res["imageUrl"];
         // this.addCategoryForm.controls.imageUrl.patchValue(+res["imageUrl"]);
         // debugger;
@@ -134,7 +193,7 @@ export class AddCategoryComponent implements OnInit, AfterViewInit {
     //   console.log("res at categories================", res);
     // });
     // debugger;
-    this.CategoriesService.getCategoriesByName("ddd");
+    // this.CategoriesService.getCategoriesByName("ddd");
   }
 
   ngAfterViewInit(): void {

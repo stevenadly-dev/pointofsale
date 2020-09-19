@@ -15,6 +15,17 @@ export class CategoriesService {
   selectedCategory;
   constructor(private firebase: AngularFireDatabase) {}
 
+  getAllCategories() {
+    this.CategoriesRef = this.firebase.list("categories");
+    return (this.Categories = this.CategoriesRef.snapshotChanges().pipe(
+      map((changes) => {
+        return changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }));
+      })
+    ));
+
+    // return this.Categories;
+  }
+
   insertCategory(category) {
     this.CategoriesRef = this.firebase.list("/categories");
     this.CategoriesRef.push(category);
@@ -29,15 +40,10 @@ export class CategoriesService {
     this.CategoriesRef.remove(category.key);
   }
 
-  getAllCategories() {
-    this.CategoriesRef = this.firebase.list("categories");
-    return (this.Categories = this.CategoriesRef.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }));
-      })
-    ));
-
-    // return this.Categories;
+  updateCategory(key, form) {
+    const itemsRef = this.firebase.list("categories");
+    debugger;
+    itemsRef.update(key, form);
   }
 
   getSelectedCategory(id: string) {

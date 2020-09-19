@@ -47,7 +47,7 @@ export let categoriesAndproduct: category[] = [
     ],
   },
   {
-    id: "category1",
+    id: "category2",
     name: "cold drinks",
     products: [
       {

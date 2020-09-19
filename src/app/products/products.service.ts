@@ -18,7 +18,7 @@ export class ProductsService {
   }
 
   pushProduct() {
-    this.CategoriesRef = this.db.list("/categories");
+    this.CategoriesRef = this.db.list("/products");
     this.CategoriesRef.push({
       products: [
         {

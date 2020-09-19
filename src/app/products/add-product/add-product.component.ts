@@ -7,7 +7,15 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./add-product.component.css"],
 })
 export class AddProductComponent implements OnInit {
-  constructor() {}
+  categories;
+  constructor(private ProductsService: ProductsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllCategories();
+    this.ProductsService.pushProduct();
+  }
+  getAllCategories() {
+    this.categories = this.ProductsService.getCategories();
+    console.log(this.categories);
+  }
 }

@@ -8,15 +8,6 @@ import { ProductsService } from "../products.service";
   styleUrls: ["./all-products.component.css"],
 })
 export class AllProductsComponent implements OnInit {
-  categories;
-  constructor(private ProductsService: ProductsService) {}
-
-  ngOnInit(): void {
-    this.getAllCategories();
-    this.ProductsService.pushProduct();
-  }
-  getAllCategories() {
-    this.categories = this.ProductsService.getCategories();
-    console.log(this.categories);
-  }
+  constructor() {}
+  ngOnInit(): void {}
 }
