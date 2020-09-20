@@ -22,6 +22,8 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CategoriesModule } from "./categories/categories.module";
 import { SidebarComponent } from "./shared/components/sidebar/sidebar.component";
+import { SidebarToggleDropDownDirective } from "./shared/directives/sidebar-toggle-drop-down.directive";
+import { UtilsServiceService } from "./shared/services/utils-service.service";
 // import { CategoriesModule } from "./categories/categories.module";
 
 //   StorageBucket
@@ -32,6 +34,7 @@ import { SidebarComponent } from "./shared/components/sidebar/sidebar.component"
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+    SidebarToggleDropDownDirective,
   ],
   imports: [
     // AngularFireStorageModule,
@@ -47,7 +50,7 @@ import { SidebarComponent } from "./shared/components/sidebar/sidebar.component"
     HomeModule,
     CategoriesModule,
   ],
-  providers: [],
+  providers: [UtilsServiceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

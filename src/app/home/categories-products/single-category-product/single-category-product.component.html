@@ -21,7 +21,7 @@
 
        <div class="row">
 
-         <div class=" col-lg-3 col-md-4 col-6  padding-20 product-parent"
+         <div class=" col-lg-4 col-md-4 col-6  padding-20 product-parent"
            *ngFor="let product of products |searchProducts : inputSearch" (click)="MainHomeService.addToCart(product)">
            <app-single-product-card [product]="product"></app-single-product-card>
          </div>
